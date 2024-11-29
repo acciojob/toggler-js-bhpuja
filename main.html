@@ -1,16 +1,95 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Toggler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
 
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .toggle-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .toggle-container div {
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-container input {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .toggled {
+            background-color: #4CAF50;
+        }
+
+        .g1, .g2, .g3 {
+            display: flex;
+            align-items: center;
+        }
+
+        span {
+            font-size: 18px;
+        }
+    </style>
+</head>
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+
+    <h2>How do you want your project to be?</h2>
+
+    <div class="toggle-container">
+        <div class="g1">
+            <input type="checkbox" id="good" class="toggle" onclick="toggleCheckbox(this)">
+            <span>Good</span>
+        </div>
+        <div class="g2">
+            <input type="checkbox" id="cheap" class="toggle" onclick="toggleCheckbox(this)">
+            <span>Cheap</span>
+        </div>
+        <div class="g3">
+            <input type="checkbox" id="fast" class="toggle" onclick="toggleCheckbox(this)">
+            <span>Fast</span>
+        </div>
+    </div>
+
+    <script>
+        function toggleCheckbox(checkbox) {
+            // Get all checkboxes
+            const checkboxes = document.querySelectorAll('.toggle');
+
+            // Count how many checkboxes are checked
+            const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+
+            if (checkedCount > 2) {
+                // If more than 2 checkboxes are checked, uncheck the first unchecked one
+                for (let cb of checkboxes) {
+                    if (!cb.checked) {
+                        cb.checked = false;
+                        break;
+                    }
+                }
+            }
+
+            // Change the color of the checkbox based on whether it's checked
+            if (checkbox.checked) {
+                checkbox.parentElement.classList.add('toggled');
+            } else {
+                checkbox.parentElement.classList.remove('toggled');
+            }
+        }
+    </script>
 
 </body>
-
 </html>
